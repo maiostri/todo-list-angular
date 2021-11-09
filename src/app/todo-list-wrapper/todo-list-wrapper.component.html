@@ -1,0 +1,13 @@
+<div>
+    <input type="text"
+    #todoListInput />
+    <button (click)="add(todoListInput)">Adicionar</button>
+    <!-- Isso é um for (laço de repetição) -->
+    <li *ngFor="let tarefa of tasks">
+        <!-- Todo o código ficaria aqui, o que é ruim, é código spaghetti -->
+        <!-- $event é o valor que emitimos no filho. -->
+        <app-todo-list-line [task]="tarefa"
+        (taskRemoved)="tratarRemocao($event)"
+        ></app-todo-list-line>
+    </li>
+</div>
