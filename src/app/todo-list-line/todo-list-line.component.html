@@ -1,5 +1,5 @@
 <div>
-    <span>{{ task }} </span>
+    <span dirtywords [dirty]="verifyDirtyWords()">{{ task }} </span>
     <button (click)="remove()">Remover tarefa</button>
     <button>Editar tarefa</button>
 </div>

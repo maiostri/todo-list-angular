@@ -10,6 +10,8 @@ export class TodoListLineComponent implements OnInit {
 
   @Output() taskRemoved = new EventEmitter();
 
+  words: string[] = ["gambiarrento", "boçal", " john armless"];
+
   constructor() { }
 
   ngOnInit(): void {
@@ -17,6 +19,10 @@ export class TodoListLineComponent implements OnInit {
 
   remove(): void {
     this.taskRemoved.emit(this.task);
+  }
+
+  verifyDirtyWords() {
+    return this.words.some(word => this.task.includes(word));
   }
 
 }
