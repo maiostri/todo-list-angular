@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Task } from '../model/task';
 
 @Component({
   selector: 'app-todo-list-line',
@@ -6,7 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./todo-list-line.component.css']
 })
 export class TodoListLineComponent implements OnInit {
-  @Input() task: string = "";
+  @Input() task: Task = new Task("", "", "");
 
   @Output() taskRemoved = new EventEmitter();
 
@@ -22,7 +23,7 @@ export class TodoListLineComponent implements OnInit {
   }
 
   verifyDirtyWords() {
-    return this.words.some(word => this.task.includes(word));
+    return this.words.some(word => this.task.name.includes(word));
   }
 
 }

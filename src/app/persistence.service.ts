@@ -1,3 +1,4 @@
+import { Task } from 'src/app/model/task';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -7,17 +8,29 @@ export class PersistenceService {
 
   constructor() { }
 
-  addToLocalStorage(task: string) {
-      let list: string[] = JSON.parse(localStorage.getItem("tasks") ?? "[]");
+  addToLocalStorage(task: Task) {
+      let list: Task[] = JSON.parse(localStorage.getItem("tasks") ?? "[]");
       list.push(task);
       localStorage.setItem("tasks", JSON.stringify(list));
   }
 
-  loadFromLocalStorage(): string[] {
+  loadFromLocalStorage(): Task[] {
     return JSON.parse(localStorage.getItem("tasks") ?? "[]");
   }
 
-  loadToLocalStorage(tasks: string[]) {
+  loadToLocalStorage(tasks: Task[]) {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }
+
+  loadTask(id: string) {
+    let list: Task[] = JSON.parse(localStorage.getItem("tasks") ?? "[]");
+    return list.find(t => t.id == id) || new Task("", "", "");
+  }
+
+  // Retornar as tarefas que tenham o texto passado.
+  searchTask(text: string) {
+    let list: Task[] = JSON.parse(localStorage.getItem("tasks") ?? "[]");
+    return list.filter(t => t.text.includes(text)) || new Task("", "", "");
+  }
+
 }
