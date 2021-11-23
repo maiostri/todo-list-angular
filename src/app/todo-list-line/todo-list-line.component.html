@@ -2,5 +2,6 @@
     <!-- /tasks/id da task -->
     <a [routerLink]="['/tasks',task.id]" dirtywords [dirty]="verifyDirtyWords()"> {{ task.name }} </a>
     <button (click)="remove()">Remover tarefa</button>
-    <button>Editar tarefa</button>
+    <a [routerLink]="['/tasks/edit',task.id]">Editar</a>
+    
 </div>

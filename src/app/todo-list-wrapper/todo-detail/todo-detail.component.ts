@@ -1,6 +1,6 @@
-import { PersistenceService } from './../../persistence.service';
+import { ApiService } from './../../api.service';
 import { ActivatedRoute } from '@angular/router';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Task } from 'src/app/model/task';
 
 @Component({
@@ -10,11 +10,13 @@ import { Task } from 'src/app/model/task';
 })
 export class TodoDetailComponent implements OnInit {
 
-  task: Task;
+  task: Task = new Task("", "", "");
 
-  constructor(private route: ActivatedRoute, persistenceService: PersistenceService) { 
+  constructor(private route: ActivatedRoute, private apiService: ApiService) { 
     const taskId = this.route.snapshot.params["id"];
-    this.task = persistenceService.loadTask(taskId);
+    this.apiService.getTask(taskId).subscribe(
+      task => this.task = task
+    );
   }
 
   ngOnInit(): void {

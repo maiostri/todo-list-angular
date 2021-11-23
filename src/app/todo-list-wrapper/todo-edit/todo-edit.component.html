@@ -1,0 +1,5 @@
+<p>Ediçao da tarefa de id: {{ task.id }}</p>
+<br/>
+<span>Nome:</span><input type="text" #inputNome />
+<span>Texto:</span><input type="text" #inputTexto/>
+<button (click)="update(inputNome.value,inputTexto.value)">Salvar</button><br>
