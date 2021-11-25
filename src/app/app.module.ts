@@ -6,7 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { TodoListWrapperComponent } from './todo-list-wrapper/todo-list-wrapper.component';
 import { TodoListLineComponent } from './todo-list-line/todo-list-line.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DirtywordsDirective } from './dirtywords.directive';
 import { TodoDetailComponent } from './todo-list-wrapper/todo-detail/todo-detail.component';
 import { TodoEditComponent } from './todo-list-wrapper/todo-edit/todo-edit.component';
@@ -32,6 +32,7 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
+    ReactiveFormsModule,
     HttpClientModule,
   ],
   providers: [],

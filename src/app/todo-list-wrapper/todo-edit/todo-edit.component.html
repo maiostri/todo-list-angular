@@ -1,5 +1,33 @@
-<p>Ediçao da tarefa de id: {{ task.id }}</p>
-<br/>
-<span>Nome:</span><input type="text" #inputNome />
-<span>Texto:</span><input type="text" #inputTexto/>
-<button (click)="update(inputNome.value,inputTexto.value)">Salvar</button><br>
+
+<form [formGroup]="editTask" (ngSubmit)="submit()">
+    <!-- Parzinho label/input. -->
+    <div class="form-group">
+        <label for="name">Nome</label>
+        <input type="text" id="name" required formControlName="name" />
+    </div>
+
+    <!-- Div para mostrar os erros -->
+    <!-- Como se eu estivesse fazendo um "this.name" e tivesse
+    declarado a atributo. -->
+    <!-- Dirty = ele significa que o usuario já começou a digital algo. -->
+    <!-- Touched = significa que o usuario colocou o foco no input. -->
+    <div *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+        <div *ngIf="name?.errors?.['required']">O nome é obrigatório!!</div>
+        <div *ngIf="name?.errors?.['minlength']">O nome precisa ter 3 letras!!</div>
+        <div *ngIf="name?.errors?.['palavrasSujas']">Tira isso da boca menino</div>
+    </div>
+    <div class="form-group">
+        <label for="text">Texto</label>
+        <input type="text" id="text" required formControlName="text"/>
+    </div>
+    <div *ngIf="text?.invalid && (text?.dirty || text?.touched)">
+        <div *ngIf="text?.errors?.['required']">O texto é obrigatório!!</div>
+        <div *ngIf="text?.errors?.['minlength']">O texto precisa ter 3 letras!!</div>
+        <div *ngIf="text?.errors?.['palavrasSujas']">Tira isso da boca menino</div>
+    </div>
+    <button type="submit" [disabled]="!editTask.valid" >Salvar</button>
+</form>
+
+<div>
+    <!-- nao vale aqui. -->
+</div>
