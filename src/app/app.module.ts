@@ -1,3 +1,6 @@
+import { InternalAboutComponent } from './settings/internal-about/internal-about.component';
+import { AboutComponent } from './settings/about/about.component';
+import { SettingsModule } from './settings/settings.module';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -17,9 +20,11 @@ const appRoutes: Routes = [
   // Pagina/Componente dos detalhes da tarefa.
   { path: 'tasks/:id', component: TodoDetailComponent },
   { path: 'tasks/edit/:id', component: TodoEditComponent },
+  { path: 'about', component: AboutComponent }
 ];
 
 @NgModule({
+  // São os componentes que compoem o módulo.
   declarations: [
     AppComponent,
     TodoListWrapperComponent,
@@ -28,14 +33,18 @@ const appRoutes: Routes = [
     TodoDetailComponent,
     TodoEditComponent,
   ],
+  // São outros módulos que a gente usa nesse módulo.
+  //
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
     ReactiveFormsModule,
     HttpClientModule,
+    SettingsModule
   ],
   providers: [],
+  exports: [DirtywordsDirective],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
